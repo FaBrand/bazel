@@ -320,14 +320,15 @@ public class ConfiguredTargetQueryEnvironment
       return configuredTarget;
     }
 
-    // Finally, try every other configuration in the build (e.g. configurations that are the result
-    // of transitions and therefore not top-level).
-    for (BuildConfiguration configuration : transitiveConfigurations.values()) {
-      configuredTarget = getValueFromKey(ConfiguredTargetValue.key(label, configuration));
-      if (configuredTarget != null) {
-        return configuredTarget;
-      }
-    }
+    // Seems to break cquery
+    // // Finally, try every other configuration in the build (e.g. configurations that are the result
+    // // of transitions and therefore not top-level).
+    // for (BuildConfiguration configuration : transitiveConfigurations.values()) {
+    //   configuredTarget = getValueFromKey(ConfiguredTargetValue.key(label, configuration));
+    //   if (configuredTarget != null) {
+    //     return configuredTarget;
+    //   }
+    // }
 
     // No matches: give up.
     return null;
